@@ -62,7 +62,6 @@
                             <th>Descripción</th>
                             <th>Editar</th>
                             <th>Borrar</th>
-                            <th>Carrito</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,9 +74,6 @@
                             </td>
                             <td>
                                 <button nz-button nzType="danger" nzShape="circle" (click)="borrar(data.$keyRegistro)"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
-                            </td>
-                            <td>
-                                <button nz-button nzType="primary" nzShape="circle" (click)="editar(data.key)"><i nz-icon nzType="shop" nzTheme="outline"></i></button>
                             </td>
                         </tr>
                     </tbody>
