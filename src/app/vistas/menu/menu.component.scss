@@ -5,9 +5,9 @@
         background-color: #292b31;
     }
     #rc_logo {
-        left: 30px;
         padding: 22px;
-        position: absolute;
+        margin-bottom: 20px;
+        position: relative;
         color: #fff;
         font-size: 19px;
         font-family: Poppins;
@@ -26,7 +26,6 @@
     .rc_nav a {
         display: inline-block;
         margin-right: -4px;
-        /* inline-block gap fix */
         color: #fff;
         padding: 22px 22px;
         text-decoration: none;
@@ -46,7 +45,7 @@
     .rc_nav .icon {
         display: none;
     }
-    .rc_content {
+    /* .rc_content {
         text-align: center;
         padding-left: 14px;
         font-family: Poppins;
@@ -78,5 +77,5 @@
             display: block;
             text-align: center;
         }
-    }
+    } */
 }

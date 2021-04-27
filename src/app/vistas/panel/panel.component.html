@@ -12,6 +12,7 @@
 <body>
 
     <div class="grid">
+        <h1>Registro de productos</h1>
         <div nz-row>
             <div nz-col nzSpan="12">
                 <div class="containerProducto">
@@ -24,9 +25,6 @@
                                     <ng-container *ngIf="control.hasError('required')">
                                         El nombre del producto es obligatorio.
                                     </ng-container>
-                                    <ng-container *ngIf="control.hasError('duplicated')">
-                                        The username is redundant!
-                                    </ng-container>
                                 </ng-template>
                             </nz-form-control>
                         </nz-form-item>
@@ -38,8 +36,8 @@
                         </nz-form-item>
                         <nz-form-item>
                             <nz-form-label [nzSpan]="7" nzRequired>Descripción</nz-form-label>
-                            <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
-                                <textarea nz-input placeholder="Controlled autosize" formControlName="descripcion" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+                            <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validando..." [nzErrorTip]="userErrorTpl">
+                                <textarea nz-input placeholder="Descripción del producto..." formControlName="descripcion" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
                                 <ng-template #userErrorTpl let-control>
                                     <ng-container *ngIf="control.hasError('required')">
                                         Por favor ingrese una descripcion.
@@ -56,7 +54,7 @@
                 </div>
             </div>
             <div nz-col nzSpan="12">
-                <nz-table #headerTable [nzData]="listOfData" [nzPageSize]="2" [nzScroll]="{ x: '100px' }">
+                <nz-table #headerTable [nzData]="listOfData" [nzPageSize]="10" [nzScroll]="{ x: '100px' }">
                     <thead>
                         <tr>
                             <th>Nombre</th>
