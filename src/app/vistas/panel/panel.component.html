@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel administrativo</title>
+</head>
+<app-menu></app-menu>
+
+<body>
+
+    <div class="grid">
+        <div nz-row>
+            <div nz-col nzSpan="12">
+                <div class="containerProducto">
+                    <form nz-form [formGroup]="prodForm" (ngSubmit)="guardarDatos()">
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="7" nzRequired>Nombre</nz-form-label>
+                            <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validando..." [nzErrorTip]="userErrorTpl">
+                                <input nz-input formControlName="nombre" placeholder="Ingrese el nombre del producto" />
+                                <ng-template #userErrorTpl let-control>
+                                    <ng-container *ngIf="control.hasError('required')">
+                                        El nombre del producto es obligatorio.
+                                    </ng-container>
+                                    <ng-container *ngIf="control.hasError('duplicated')">
+                                        The username is redundant!
+                                    </ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="7" nzRequired>SKU</nz-form-label>
+                            <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+                                <nz-input-number nz-input formControlName="sku" [nzMin]="1" [nzStep]="1"></nz-input-number>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="7" nzRequired>Descripción</nz-form-label>
+                            <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+                                <textarea nz-input placeholder="Controlled autosize" formControlName="descripcion" [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+                                <ng-template #userErrorTpl let-control>
+                                    <ng-container *ngIf="control.hasError('required')">
+                                        Por favor ingrese una descripcion.
+                                    </ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+                                <button nzBlock nz-button nzType="primary" [disabled]="!prodForm.valid">Subir Producto</button>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </form>
+                </div>
+            </div>
+            <div nz-col nzSpan="12">
+                <nz-table #headerTable [nzData]="listOfData" [nzPageSize]="2" [nzScroll]="{ x: '100px' }">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>SKU</th>
+                            <th>Descripción</th>
+                            <th>Editar</th>
+                            <th>Borrar</th>
+                            <th>Carrito</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of data">
+                            <td>{{ data.nombre }}</td>
+                            <td>{{ data.sku }}</td>
+                            <td>{{ data.descripcion }}</td>
+                            <td>
+                                <button nz-button nzType="warning" nzShape="circle" (click)="editar(data)"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                            </td>
+                            <td>
+                                <button nz-button nzType="danger" nzShape="circle" (click)="borrar(data.$keyRegistro)"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+                            </td>
+                            <td>
+                                <button nz-button nzType="primary" nzShape="circle" (click)="editar(data.key)"><i nz-icon nzType="shop" nzTheme="outline"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </div>
+        </div>
+    </div>
+    <nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+        <div *nzModalContent>
+            <form nz-form #editprodForm="ngForm" (ngSubmit)="guardaredDatos(key,Ednombre,Edsku,Eddescripcion)">
+                <nz-form-item>
+                    <input hidden nz-input name="key" id="key" #key [(value)]="editProd.$keyRegistro" />
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="7" nzRequired>Nombre</nz-form-label>
+                    <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validando..." [nzErrorTip]="userErrorTpl">
+                        <input nz-input #Ednombre name="Ednombre" id="Ednombre" [(value)]="editProd.nombre" placeholder="Ingrese el nombre del producto" />
+                        <ng-template #userErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">
+                                El nombre del producto es obligatorio.
+                            </ng-container>
+                            <ng-container *ngIf="control.hasError('duplicated')">
+                                The username is redundant!
+                            </ng-container>
+                        </ng-template>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="7" nzRequired>SKU</nz-form-label>
+                    <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+                        <input nz-input #Edsku name="Edsku" id="Edsku" [(value)]="editProd.sku" [nzMin]="1" [nzStep]="1">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="7" nzRequired>Descripción</nz-form-label>
+                    <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+                        <textarea nz-input placeholder="Controlled autosize" [(value)]="editProd.descripcion" #Eddescripcion [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+                        <ng-template #userErrorTpl let-control>
+                            <ng-container *ngIf="control.hasError('required')">
+                                Por favor ingrese una descripcion.
+                            </ng-container>
+                        </ng-template>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+                        <button nzBlock nz-button nzType="primary">Editar Producto</button>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+        </div>
+        <div *nzModalFooter>
+            <button nz-button nzType="default" (click)="handleCancel()">Cancelar</button>
+        </div>
+    </nz-modal>
+</body>
+
+</html>

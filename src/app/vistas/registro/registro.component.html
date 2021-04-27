@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+
+<body>
+    <div nz-row>
+        <div nz-col nzSpan="7" class="visibility"></div>
+        <div nz-col nzSpan="10">
+            <div class="loginContainer">
+                <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                    <div class="containerLogin">
+                        <div class="avatarLogin">
+                            <nz-avatar nzSize="large" nzIcon="user"></nz-avatar>
+                        </div>
+                        <nz-form-item>
+
+                            <nz-form-control nzErrorTip="Please input your username!">
+                                <nz-input-group nzPrefixIcon="user">
+                                    <input formControlName="email" nz-input placeholder="Email" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Please input your Password!">
+                                <nz-input-group nzPrefixIcon="lock">
+                                    <input formControlName="password" nz-input type="password" placeholder="Password" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control>
+                                <button nz-button nzType="primary" class="buttonI" [disabled]="!validateForm.valid" nzBlock>REGISTRARSE</button>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control>
+                                <button nz-button nzType="primary" class="buttonR" nzBlock routerLink="/login">INICIAR SESIÓN</button>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div nz-col nzSpan="7" class="visibility"></div>
+    </div>
+</body>
+
+</html>

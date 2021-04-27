@@ -1,0 +1,38 @@
+.grid {
+    .ant-row {
+        .containerProducto {
+            margin-top: 60px;
+            padding: 0px 15px 15px 15px;
+            [nz-form] {
+                max-width: 600px;
+            }
+            button {
+                margin-left: 8px;
+            }
+        }
+    }
+    .ant-modal-footer {
+        display: none !important;
+    }
+    nz-table.ant-table-wrapper {
+        margin: 10px;
+    }
+    @media screen and(max-width:950px) {
+        .ant-row {
+            display: flex;
+            flex-direction: column;
+        }
+        nz-form-item.ant-form-item.ant-row {
+            display: flex;
+            flex-direction: unset;
+        }
+        .ant-col-12:nth-child(1) {
+            max-width: 100% !important;
+            margin: auto;
+            width: 80%;
+        }
+        .ant-col-12 {
+            max-width: 100% !important;
+        }
+    }
+}

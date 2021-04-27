@@ -1,0 +1,52 @@
+* {
+    body {
+        background: url('https://cdn.pixabay.com/photo/2021/01/05/06/40/boat-5889919_960_720.png');
+        background-position: center;
+        background-size: cover;
+    }
+    .containerLogin {
+        margin-top: 25%;
+        padding: 15px 50px 10px 50px;
+        background-color: rgba(255, 255, 255, 0.5)!important;
+        border-radius: 5px;
+        .avatarLogin {
+            text-align: center;
+            margin-bottom: 30px;
+            .ant-avatar-lg.ant-avatar-icon {
+                font-size: 35px;
+            }
+            .ant-avatar-lg {
+                width: 70px;
+                height: 70px;
+                line-height: 70px;
+                background: #40a9ff;
+            }
+        }
+        .ant-input-affix-wrapper {
+            font-size: 20px;
+        }
+        button.buttonI.ant-btn.ant-btn-primary.ant-btn-block {
+            font-weight: 500;
+        }
+        button.buttonR.ant-btn.ng-tns-c69-3.ant-btn-primary.ant-btn-block {
+            background: green;
+            border-color: green;
+            font-weight: 500;
+        }
+    }
+    @media screen and(max-width:950px) {
+        .containerLogin {
+            padding: 15px 20px 15px 20px;
+        }
+    }
+    @media screen and(max-width:600px) {
+        .visibility {
+            display: none
+        }
+        .ant-col-10 {
+            max-width: 80%;
+            margin: auto;
+            flex: 100%;
+        }
+    }
+}
